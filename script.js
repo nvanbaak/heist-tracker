@@ -2,7 +2,38 @@ const BLADESBLUE = "#444466";
 const BLADESGREEN = "#446644";
 const BLADESRED = "#884444";
 
-drawClock("test", 4, 6, BLADESGREEN);
+document.getElementById("clock-submit").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // Create HTML elements and assign the relevant classes
+    var newPanel = document.createElement("div");
+    newPanel.setAttribute("class", "clock-panel");
+
+    var newCanvas = document.createElement("canvas");
+    newCanvas.setAttribute("id", "test2");
+
+    var canvasLabel = document.getElementById("clock-input").value;
+
+    var newH2 = document.createElement("h2");
+    newH2.innerText = canvasLabel;
+
+    // Append up the chain
+    newPanel.appendChild(newCanvas);
+    newPanel.appendChild(newH2);
+
+    document.querySelector(".clock-port").appendChild(newPanel);
+
+    // drawClock("test2", 1, 4, BLADESBLUE);
+
+
+})
+
+
+
+
+
+
+
 
 
 function drawClock(canvasID, complete, segment, colorStr) {
