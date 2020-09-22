@@ -2,6 +2,8 @@ const BLADESBLUE = "#444466";
 const BLADESGREEN = "#446644";
 const BLADESRED = "#884444";
 
+var clocksActive = 0;
+
 document.getElementById("clock-submit").addEventListener("click", function(event) {
     event.preventDefault();
 
@@ -10,7 +12,8 @@ document.getElementById("clock-submit").addEventListener("click", function(event
     newPanel.setAttribute("class", "clock-panel");
 
     var newCanvas = document.createElement("canvas");
-    newCanvas.setAttribute("id", "test2");
+    var canvID = "clock" + clocksActive++;
+    newCanvas.setAttribute("id", canvID);
 
     var canvasLabel = document.getElementById("clock-input").value;
 
@@ -22,6 +25,18 @@ document.getElementById("clock-submit").addEventListener("click", function(event
     newPanel.appendChild(newH2);
 
     document.querySelector(".clock-port").appendChild(newPanel);
+
+    // Draw the clock
+
+    // Get color
+    var clockColor = BLADESBLUE;
+    var colorInput = document.getElementById("color-input");
+    if ( colorInput === "red" ) {
+        clockColor = BLADESRED;
+    } else if ( colorInput === "green") {
+        clockColor = BLADESGREEN;
+    }
+
 
     // drawClock("test2", 1, 4, BLADESBLUE);
 
