@@ -12,15 +12,20 @@ function drawClock(canvasID, complete, segment, colorStr) {
     if (canvas.getContext) {
 
         // set up canvas context
+        var canvSize = 250;
+        var halfSize = canvSize / 2;
         var ctx = canvas.getContext('2d');
-        canvas.width = 200;
-        canvas.height = 200;
+        canvas.width = canvas.height = canvSize;
 
         // Draw clock background
         ctx.fillStyle = colorStr;
+        ctx.shadowColor = "black";
+        ctx.shadowBlur = 15;
         ctx.beginPath();
-        ctx.arc(100,100,100,0,Math.PI * 2);
+        ctx.arc(halfSize,halfSize,halfSize,0,Math.PI * 2);
         ctx.fill();
+        ctx.shadowBlur = 0;
+
 
         // Create the appropriate number of segments
         for (i = 0; i < segment; i++) {
@@ -37,11 +42,11 @@ function drawClock(canvasID, complete, segment, colorStr) {
             // Start drawing
             ctx.beginPath();
             // Move pen to the middle of the canvas
-            ctx.moveTo(100,100);
+            ctx.moveTo(halfSize,halfSize);
             // Draw arc centered on the canvas with endpoints as defined above
-            ctx.arc(100,100,98,arcStart,arcEnd)
+            ctx.arc(halfSize,halfSize,halfSize-2,arcStart,arcEnd)
             // Draw a line back to the middle
-            ctx.lineTo(100,100);
+            ctx.lineTo(halfSize,halfSize);
         
             // Close the shape; if it's not completed yet, we fill it in grey and add an outline
             if ( i >= complete ) {
@@ -51,9 +56,9 @@ function drawClock(canvasID, complete, segment, colorStr) {
                 // If we fill, we draw an unfilled copy on top with white outline
                 ctx.strokeStyle = "#FFFFFF";
                 ctx.beginPath();
-                ctx.moveTo(100,100);
-                ctx.arc(100,100,98,arcStart,arcEnd)
-                ctx.lineTo(100,100);
+                ctx.moveTo(halfSize,halfSize);
+                ctx.arc(halfSize,halfSize,halfSize-2,arcStart,arcEnd)
+                ctx.lineTo(halfSize,halfSize);
                 ctx.stroke();
         
             } else {
