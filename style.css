@@ -11,6 +11,29 @@ main {
     padding: 50px;
 }
 
+header {
+    padding: 10px;
+    background-color: #cccccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+#clock-submit {
+    height: 100%;
+}
+
+.half-width {
+    width: 50%;
+}
+
 h1 {
     font-size: 30px;
     font-weight: bold;
@@ -26,12 +49,6 @@ h2 {
     /* border: 1px solid black; */
 }
 
-header {
-    padding: 10px;
-    background-color: #cccccc;
-    display: flex;
-    justify-content: space-between;
-}
 
 .clock-panel {
     margin: 15px 20px;

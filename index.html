@@ -15,15 +15,29 @@
 
     <header>
         <h1>Blades in the Dark</h1>
-        <form>
-            <label for="clock-input">Add Clock: </label>
-            <input type="text" id=clock-input>
-            <button id=clock-submit>Add</button>
+        <form class="flex">
+            <div class="column half-width">
+                <div class="row flex justify-between">
+                    <label for="clock-input">Label: </label>
+                    <input type="text" id="clock-input">
+                </div>
+                <div class="row flex">
+                    <label for="segment-input">Segments: </label>
+                    <input type="text" id="segment-input" class="half-width">
+                    <label for="color-input">Color: </label>
+                    <input type="text" id="color-input" class="half-width">
+                </div>
+            </div>
+            <div class="column">
+                <button id=clock-submit>Add</button>
+            </div>
         </form>
 
         <div class="spacer"></div>
         <div class="spacer"></div>
-
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        
     </header>
 
     <main>
