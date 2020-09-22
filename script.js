@@ -2,7 +2,7 @@ const BLADESBLUE = "#444466";
 const BLADESGREEN = "#446644";
 const BLADESRED = "#884444";
 
-drawClock("test", 2, 6, BLADESRED);
+drawClock("test", 4, 6, BLADESGREEN);
 
 
 function drawClock(canvasID, complete, segment, colorStr) {
@@ -14,6 +14,7 @@ function drawClock(canvasID, complete, segment, colorStr) {
         // set up canvas context
         var canvSize = 250;
         var halfSize = canvSize / 2;
+        var portion = halfSize * 0.8;
         var ctx = canvas.getContext('2d');
         canvas.width = canvas.height = canvSize;
 
@@ -22,7 +23,7 @@ function drawClock(canvasID, complete, segment, colorStr) {
         ctx.shadowColor = "black";
         ctx.shadowBlur = 15;
         ctx.beginPath();
-        ctx.arc(halfSize,halfSize,halfSize,0,Math.PI * 2);
+        ctx.arc(halfSize,halfSize,portion,0,Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
 
@@ -44,7 +45,7 @@ function drawClock(canvasID, complete, segment, colorStr) {
             // Move pen to the middle of the canvas
             ctx.moveTo(halfSize,halfSize);
             // Draw arc centered on the canvas with endpoints as defined above
-            ctx.arc(halfSize,halfSize,halfSize-2,arcStart,arcEnd)
+            ctx.arc(halfSize,halfSize,portion-2,arcStart,arcEnd)
             // Draw a line back to the middle
             ctx.lineTo(halfSize,halfSize);
         
@@ -57,7 +58,7 @@ function drawClock(canvasID, complete, segment, colorStr) {
                 ctx.strokeStyle = "#FFFFFF";
                 ctx.beginPath();
                 ctx.moveTo(halfSize,halfSize);
-                ctx.arc(halfSize,halfSize,halfSize-2,arcStart,arcEnd)
+                ctx.arc(halfSize,halfSize,portion-2,arcStart,arcEnd)
                 ctx.lineTo(halfSize,halfSize);
                 ctx.stroke();
         

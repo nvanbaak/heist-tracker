@@ -1,5 +1,43 @@
 body {
     background-color: cadetblue;
+
+    line-height: 1.2;
+}
+
+main {
+    padding: 50px;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.clock-port {
+    width: 20%;
+    /* border: 1px solid black; */
+}
+
+header {
+    padding: 10px;
+    background-color: #cccccc;
+}
+
+.clock-panel {
+    margin: 15px 20px;
+    border-radius: 15px;
+    background-color: #cccccccc;
+
+    display: flex;
+}
+
+.clock-panel h2 {
+    margin-top: 75px;
 }
 
 canvas {
