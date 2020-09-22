@@ -7,6 +7,12 @@ var clocksActive = 0;
 document.getElementById("clock-submit").addEventListener("click", function(event) {
     event.preventDefault();
 
+    // Show clockpanel if hidden
+    if ( clocksActive < 1 ) {
+        document.querySelector(".clock-port").style.display = "block"
+    }
+
+
     // Create HTML elements and assign the relevant classes
     var newPanel = document.createElement("div");
     newPanel.setAttribute("class", "clock-panel");

@@ -9,6 +9,8 @@ body {
 
 main {
     padding: 50px;
+    display: flex;
+    justify-content: space-between;
 }
 
 header {
@@ -47,6 +49,7 @@ h2 {
 .clock-port {
     width: 25%;
 
+    display: none;
     overflow: scroll;
 }
 
