@@ -14,7 +14,7 @@ document.getElementById("clock-submit").addEventListener("click", function(event
     }
 
     // #########################
-    // HTML STRUCTURE
+    //      HTML STRUCTURE
     // #########################
 
 
@@ -40,25 +40,26 @@ document.getElementById("clock-submit").addEventListener("click", function(event
 
     document.querySelector(".clock-port").appendChild(newPanel);
 
-    
-    // Draw the clock
+    // #############################
+    //        DRAW THE CLOCK
+    // #############################
     
     // Get color
     var clockColor = BLADESBLUE;
-    var colorInput = document.getElementById("color-input");
+    var colorInput = document.getElementById("color-input").value;
     if ( colorInput === "red" ) {
         clockColor = BLADESRED;
     } else if ( colorInput === "green") {
         clockColor = BLADESGREEN;
     }
     
-    
-    
+    // Determine segment count
+    var segCount = document.getElementById("segment-input").value;
 
+    // Draw the clock
+    drawClock(`clock${clocksActive-1}`, 2, segCount, clockColor);
 
-
-
-    drawClock(`clock${clocksActive-1}`, 0, 4, clockColor);
+    // Add increment behavior to clock
 })
 
 
