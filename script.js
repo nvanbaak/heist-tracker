@@ -4,6 +4,7 @@ const BLADESRED = "#884444";
 
 var clocksActive = 0;
 
+// This function governs clock creation
 document.getElementById("clock-submit").addEventListener("click", function(event) {
     event.preventDefault();
 
@@ -12,19 +13,26 @@ document.getElementById("clock-submit").addEventListener("click", function(event
         document.querySelector(".clock-port").style.display = "block"
     }
 
+    // #########################
+    // HTML STRUCTURE
+    // #########################
 
-    // Create HTML elements and assign the relevant classes
+
+    // Create create panel for clock content
     var newPanel = document.createElement("div");
     newPanel.setAttribute("class", "clock-panel");
 
+    // Create canvas with unique id (this becomes the clock)
     var newCanvas = document.createElement("canvas");
     var canvID = "clock" + clocksActive++;
     newCanvas.setAttribute("id", canvID);
 
-    var canvasLabel = document.getElementById("clock-input").value;
+    // We use this data attribute to track the clock's completion progress
+    newCanvas.setAttribute("data-complete", 0);
 
+    // create h2 to label the clock
     var newH2 = document.createElement("h2");
-    newH2.innerText = canvasLabel;
+    newH2.innerText = document.getElementById("clock-input").value;;
 
     // Append up the chain
     newPanel.appendChild(newCanvas);
@@ -32,8 +40,9 @@ document.getElementById("clock-submit").addEventListener("click", function(event
 
     document.querySelector(".clock-port").appendChild(newPanel);
 
+    
     // Draw the clock
-
+    
     // Get color
     var clockColor = BLADESBLUE;
     var colorInput = document.getElementById("color-input");
@@ -42,11 +51,14 @@ document.getElementById("clock-submit").addEventListener("click", function(event
     } else if ( colorInput === "green") {
         clockColor = BLADESGREEN;
     }
+    
+    
+    
 
 
-    // drawClock("test2", 1, 4, BLADESBLUE);
 
 
+    drawClock(`clock${clocksActive-1}`, 0, 4, clockColor);
 })
 
 

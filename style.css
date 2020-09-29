@@ -48,14 +48,15 @@ h2 {
 
 .clock-port {
     width: 25%;
+    height: 80vh;
 
     display: none;
     overflow: scroll;
 }
 
-
 .clock-panel {
     margin: 15px 20px;
+    padding-right: 10px;
     border-radius: 15px;
     background-color: #cccccccc;
 
