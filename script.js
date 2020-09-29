@@ -10,7 +10,7 @@ document.getElementById("clock-submit").addEventListener("click", function(event
 
     // Show clockpanel if hidden
     if ( clocksActive < 1 ) {
-        document.querySelector(".clock-port").style.display = "block"
+        document.querySelector(".clock-port").style.display = "block";
     }
 
     // #########################
@@ -21,10 +21,11 @@ document.getElementById("clock-submit").addEventListener("click", function(event
     // Create create panel for clock content
     var newPanel = document.createElement("div");
     newPanel.setAttribute("class", "clock-panel");
+    newPanel.setAttribute("id","panel" + clocksActive)
 
     // Create canvas with unique id (this becomes the clock)
     var newCanvas = document.createElement("canvas");
-    var canvID = "clock" + clocksActive++;
+    var canvID = "clock" + clocksActive;
     newCanvas.setAttribute("id", canvID);
 
     // We use this data attribute to track the clock's completion progress
@@ -52,23 +53,66 @@ document.getElementById("clock-submit").addEventListener("click", function(event
     } else if ( colorInput === "green") {
         clockColor = BLADESGREEN;
     }
+
+    // Add color to data attribute
+    newCanvas.setAttribute("data-color", clockColor);
     
     // Determine segment count
     var segCount = document.getElementById("segment-input").value;
 
-    // Draw the clock
-    drawClock(`clock${clocksActive-1}`, 2, segCount, clockColor);
+    // Add segment count to data attribute
+    newCanvas.setAttribute("data-segments", segCount);
 
-    // Add increment behavior to clock
+    // Draw the clock
+    drawClock(`clock${clocksActive}`, 0, segCount, clockColor);
+
+    // Increment clock counter
+    clocksActive++;
+
 })
 
+// ##############################
+//    CLOCK INCREMENT BEHAVIOR
+// ##############################
 
+document.querySelector(".clock-port").addEventListener("click", function(event) {
+    
+    // We only fire the code if we're clicking on a canvas
+    if (event.target.matches("canvas")) {
+        //  Get the clock attributes
+        var thisGuy = event.target;
+        var clockIndex = thisGuy.id;
+        var clockProgress = thisGuy.dataset.complete;
+        var clockColor = thisGuy.dataset.color;
+        var clockSegments = thisGuy.dataset.segments;
 
+        // If the clock isn't done
+        if (clockProgress < clockSegments) {
+            // Increment progress and save it in the clock
+            clockProgress++;
+            thisGuy.dataset.complete = clockProgress;
+        } else {
+            // Otherwise delete the panel
+            // get id of panel by reverse engineering from last character of clock id
+            var panelID = "panel" + clockIndex[clockIndex.length -1];
+            // kill it
+            document.getElementById(panelID).remove()
+            
+            // Now we have to stop the function or we'll get errors when it tries to draw on the canvas that no longer exists
+            return;
+        }
 
+        // Draw the clock using the information
+        drawClock(clockIndex, clockProgress, clockSegments, clockColor);
 
+    }
+    
+    
+});
 
-
-
+// ############################
+//    CLOCK DRAWING FUNCTION
+// ############################
 
 function drawClock(canvasID, complete, segment, colorStr) {
 // Draws a clock with the specified number of segments and fills in some of them.
